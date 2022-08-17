@@ -188,3 +188,22 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.formL{
+  margin: auto;
+  width: 25%;
+  margin-top: 0%;
+}
+
+.imgLP{
+  margin: auto;
+  width: 35%;
+  height: 40%;
+  margin-top: 4%;
+}
+
+.imgL{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
