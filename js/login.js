@@ -20,7 +20,7 @@ submit.addEventListener("click", function(u){
     }
 
     if(!aprove){
-        window.location.href = "index.html";
+        window.location.href = "main.html";
     }
 
 
