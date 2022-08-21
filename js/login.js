@@ -4,7 +4,6 @@ const submit = document.getElementById('submit');
 submit.addEventListener("click", function(u){
 
     u.preventDefault(); 
-    u.preventDefault(); 
 
     let user = document.getElementById("exampleInputEmail1");
     let pass = document.getElementById("exampleInputPassword1");

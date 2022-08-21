@@ -1,7 +1,6 @@
 const container = document.getElementById("container");
 
 function showData(dataArray) {
-  let htmlContentToAppend2 = "";
   
   for (const item of dataArray) {
     
