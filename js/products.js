@@ -23,12 +23,20 @@ function showData(dataArray) {
   }
 }
   async function loadData(){
-    let response = await fetch(PRODUCTS_AUTOS);
+    let response = await fetch(LINK_PRODUCTOS);
     let json = await response.json();
     showData(json.products);
   }
   
   loadData();
+
+const user = document.getElementById("username");
+const dataStorage = localStorage.getItem("text");
+
+    function cargarHTML(){
+        user.innerHTML += localStorage.getItem("text")
+    }
+    cargarHTML();
 
 
 

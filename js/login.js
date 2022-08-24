@@ -5,14 +5,19 @@ submit.addEventListener("click", function(u){
 
     u.preventDefault(); 
 
-    let user = document.getElementById("exampleInputEmail1");
+    const user = document.getElementById("exampleInputEmail1");
     let pass = document.getElementById("exampleInputPassword1");
     let aprove = false;
 
+
     if (user.value === ""){
         user.classList.add('is-invalid');
-        aprove = true;
-    }
+        aprove = true;  
+    }else{
+        localStorage.setItem("text", user.value);
+    } 
+
+    
     if (pass.value === ""){
         pass.classList.add('is-invalid');
         aprove = true;
