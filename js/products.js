@@ -62,6 +62,66 @@ function sortPrecio(datarray){
     });
   }
 
+  function sortPrecioDesc(datarray){
+    datarray.sort(function(a, b) {
+      if(a.cost < b.cost) {
+        return 1;
+      }
+      if(a.cost > b.cost) {
+        return -1;
+      }
+      return 0;
+      })
+      .forEach((value) => {
+        container.innerHTML += `
+              <div onclick="setCatID(${value.id})" class="list-group-item list-group-item-action cursor-active">
+                  <div class="row">
+                      <div class="col-3">
+                          <img src="${value.image}" alt="${value.description}" class="img-thumbnail">
+                      </div>
+                      <div class="col">
+                          <div class="d-flex w-100 justify-content-between">
+                              <h4 class="mb-1">${value.name} - ${value.currency} ${value.cost} </h4>
+                              <small class="text-muted">${value.soldCount} artículos</small>
+                          </div>
+                          <p class="mb-1">${value.description}</p>
+                      </div>
+                  </div>
+              </div>
+              `
+      });
+    }
+
+    function sortCantVend(datarray){
+      datarray.sort(function(a, b) {
+        if(a.soldCount < b.soldCount) {
+          return 1;
+        }
+        if(a.cost > b.cost) {
+          return -1;
+        }
+        return 0;
+        })
+        .forEach((value) => {
+          container.innerHTML += `
+                <div onclick="setCatID(${value.id})" class="list-group-item list-group-item-action cursor-active">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="${value.image}" alt="${value.description}" class="img-thumbnail">
+                        </div>
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">${value.name} - ${value.currency} ${value.cost} </h4>
+                                <small class="text-muted">${value.soldCount} artículos</small>
+                            </div>
+                            <p class="mb-1">${value.description}</p>
+                        </div>
+                    </div>
+                </div>
+                `
+        });
+    }
+
 
   async function loadData(){
     let response = await fetch(LINK_PRODUCTOS);
@@ -71,6 +131,17 @@ function sortPrecio(datarray){
       container.innerHTML="";
       sortPrecio(json.products);
     });
+
+    document.getElementById("sortDesc").addEventListener("click", function(){
+      container.innerHTML="";
+      sortPrecioDesc(json.products);
+    });
+
+    document.getElementById("sortByCount").addEventListener("click", function(){
+      container.innerHTML="";
+      sortCantVend(json.products);
+    });
+
   }
   
   loadData();
