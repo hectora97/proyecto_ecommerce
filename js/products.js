@@ -97,7 +97,7 @@ function sortPrecio(datarray){
         if(a.soldCount < b.soldCount) {
           return 1;
         }
-        if(a.cost > b.cost) {
+        if(a.soldCount > b.soldCount) {
           return -1;
         }
         return 0;
