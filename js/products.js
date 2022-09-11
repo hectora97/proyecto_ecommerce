@@ -7,6 +7,10 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+function setProID(id) {
+  localStorage.setItem("proID", id);
+  window.location = "product-info.html"
+}
 
 
 function showData(dataArray) {
@@ -14,7 +18,7 @@ function showData(dataArray) {
   for (const item of dataArray) {
     
     container.innerHTML += `
-            <div onclick="setCatID(${item.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProID(${item.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${item.image}" alt="${item.description}" class="img-thumbnail">
@@ -44,7 +48,7 @@ function sortPrecio(datarray){
     })
     .forEach((value) => {
       container.innerHTML += `
-            <div onclick="setCatID(${value.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProID(${value.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${value.image}" alt="${value.description}" class="img-thumbnail">
@@ -74,7 +78,7 @@ function sortPrecio(datarray){
       })
       .forEach((value) => {
         container.innerHTML += `
-              <div onclick="setCatID(${value.id})" class="list-group-item list-group-item-action cursor-active">
+              <div onclick="setProID(${value.id})" class="list-group-item list-group-item-action cursor-active">
                   <div class="row">
                       <div class="col-3">
                           <img src="${value.image}" alt="${value.description}" class="img-thumbnail">
@@ -104,7 +108,7 @@ function sortPrecio(datarray){
         })
         .forEach((value) => {
           container.innerHTML += `
-                <div onclick="setCatID(${value.id})" class="list-group-item list-group-item-action cursor-active">
+                <div onclick="setProID(${value.id})" class="list-group-item list-group-item-action cursor-active">
                     <div class="row">
                         <div class="col-3">
                             <img src="${value.image}" alt="${value.description}" class="img-thumbnail">
@@ -129,7 +133,7 @@ function sortPrecio(datarray){
               ((maxCount == undefined) || (maxCount != undefined && parseInt(item2.cost) <= maxCount))){
   
               container.innerHTML += `
-              <div onclick="setCatID(${item2.id})" class="list-group-item list-group-item-action cursor-active">
+              <div onclick="setProID(${item2.id})" class="list-group-item list-group-item-action cursor-active">
                     <div class="row">
                         <div class="col-3">
                             <img src="${item2.image}" alt="${item2.description}" class="img-thumbnail">
