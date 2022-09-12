@@ -11,6 +11,7 @@ const ID = localStorage.getItem("catID");
 var LINK_PRODUCTOS ="https://japceibal.github.io/emercado-api/cats_products/"+ ID +""+ EXT_TYPE;
 const IDP = localStorage.getItem("proID");
 var LINK_INFO_PRODUCTOS = PRODUCT_INFO_URL + IDP + EXT_TYPE;
+var LINK_COM_PRO = PRODUCT_INFO_COMMENTS_URL + IDP + EXT_TYPE;
 
 
 let showSpinner = function(){

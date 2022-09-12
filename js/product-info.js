@@ -1,6 +1,6 @@
 const container2 = document.getElementById("container1");
 
-function mostrarDatos(data) {
+function mostrarDatos(data, data2) {
     const [images1, images2, images3, images4] = data.images; 
             container2.innerHTML = `
               <div onclick="setProID(${data.id})" class="container" style="width:80%;margin-top:3%;">
@@ -69,15 +69,37 @@ function mostrarDatos(data) {
                         <span style="background-color:grey;" class="visually-hidden">Siguiente</span>
                     </button>
                     </div>
+                    <div class="container d-flex w-500 justify-content-between">
+                        <h1 class="mb-1">Comentarios</h1>
+                    </div>
+                    
+                    `
 
+            for (const item of data2) {
+
+                container2.innerHTML +=
+
+                   `
+                   <div onclick="setProID(${item.id})" class="container list-group-item list-group-item-action cursor-active">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1"><b>${item.user}</b> ${item.dateTime} ${item.score}</h4>
+                            </div>
+                            <p class="mb-1">${item.description}</p>
+                        </div>
+                    </div>
+                </div>
               `
+            }
   }
 
 async function loadData(){
     let response = await fetch(LINK_INFO_PRODUCTOS);
+    let response2 = await fetch(LINK_COM_PRO);
     let json = await response.json();
-    console.log(json);
-    mostrarDatos(json);
+    let json2 = await response2.json();
+    mostrarDatos(json,json2);
 }
 
 loadData();
