@@ -1,4 +1,4 @@
-const container2 = document.getElementById("container1");
+const container2 = document.getElementById("cat-list-container");
 
 function mostrarDatos(data, data2) {
     const [images1, images2, images3, images4] = data.images; 
@@ -70,28 +70,35 @@ function mostrarDatos(data, data2) {
                     </button>
                     </div>
                     <div class="container d-flex w-500 justify-content-between">
-                        <h1 class="mb-1">Comentarios</h1>
+                        <h1 class="mb-1" style="margin-top:3%;">Comentarios</h1>
                     </div>
                     
                     `
 
-            for (const item of data2) {
-
+            for (const item of data2) { 
                 container2.innerHTML +=
-
+                
                    `
-                   <div onclick="setProID(${item.id})" class="container list-group-item list-group-item-action cursor-active">
-                    <div class="row">
+                   <div onclick="setProID(${item.id})" class="container list-group-item list-group-item-action cursor-active" style="z-index: 10;">
+                    <div class="row" style="z-index: 10;">
                         <div class="col">
                             <div class="d-flex w-100 justify-content-between">
-                                <h4 class="mb-1"><b>${item.user}</b> ${item.dateTime} ${item.score}</h4>
+                                <h4 class="mb-1" id="estrellas"><b>${item.user}</b> ${item.dateTime}
+                                    
+                                </h4>
                             </div>
                             <p class="mb-1">${item.description}</p>
                         </div>
                     </div>
                 </div>
               `
+              for (i = 0; i < item.score; i++){
+                container2.innerHTML += `<div style=" display: inline; margin-left:40%; margin-right:-520px;">
+                <span class="fa fa-star checked align-middle mb-1" style="position:relative; margin-top:-10%; z-index: 1000;align-items:center">
+                </span>
+                </div>`
             }
+        }      
   }
 
 async function loadData(){
