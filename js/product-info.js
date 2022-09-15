@@ -83,7 +83,7 @@ function mostrarDatos(data, data2) {
                     <div class="row" style="z-index: 10;">
                         <div class="col">
                             <div class="d-flex w-100 justify-content-between">
-                                <h4 class="mb-1" id="estrellas"><b>${item.user}</b> ${item.dateTime}
+                                <h4 class="mb-1" id="estrellas" style="position:relative; margin-right:50px;"><b>${item.user}</b> ${item.dateTime}    
                                     
                                 </h4>
                             </div>
@@ -91,13 +91,21 @@ function mostrarDatos(data, data2) {
                         </div>
                     </div>
                 </div>
+
               `
-              for (i = 0; i < item.score; i++){
-                container2.innerHTML += `<div style=" display: inline; margin-left:40%; margin-right:-520px;">
-                <span class="fa fa-star checked align-middle mb-1" style="position:relative; margin-top:-10%; z-index: 1000;align-items:center">
-                </span>
-                </div>`
+              for (i = 0; i < 5; i++){
+
+                    if(i >= item.score){
+                        container2.innerHTML += `<div class="estrellas" style=" display: inline; margin-left:43%; margin-right:-550px;"><span class="fa fa-star align-middle mb-1" style="position:relative; margin-top:-10%; z-index: 1000;align-items:center"></span> </div>`
+                        
+                    }else{
+                        container2.innerHTML += `<div style=" display: inline; margin-left:43%; margin-right:-550px;">
+                        <span class="fa fa-star checked align-middle mb-1" style="position:relative; margin-top:-10%; z-index: 1000;align-items:center">
+                        </span>
+                        </div>`
+                    }
             }
+            
         }      
   }
 
