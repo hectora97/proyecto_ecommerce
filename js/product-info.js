@@ -1,9 +1,23 @@
 const container2 = document.getElementById("cat-list-container");
+const container3 = document.getElementById("container3");
+const user = document.getElementById("username");
+const dataStorage = localStorage.getItem("text");
 
-function mostrarDatos(data, data2) {
+    function cargarHTML(){
+        user.innerHTML += localStorage.getItem("text") 
+    }
+    cargarHTML();
+
+    function setProID2(id) {
+        localStorage.setItem("proID", id);
+        window.location = "product-info.html"
+      }
+
+
+function mostrarDatos(data,data2) {
     const [images1, images2, images3, images4] = data.images; 
             container2.innerHTML = `
-              <div onclick="setProID(${data.id})" class="container" style="width:80%;margin-top:3%;">
+              <div class="container" style="width:80%;margin-top:3%;">
                   <div class="row">
                       <div class="col">
                           <div class="d-flex w-500 justify-content-between">
@@ -79,7 +93,7 @@ function mostrarDatos(data, data2) {
                 container2.innerHTML +=
                 
                    `
-                   <div onclick="setProID(${item.id})" class="container list-group-item list-group-item-action cursor-active" style="z-index: 10;">
+                   <div class="container list-group-item list-group-item-action cursor-active" style="z-index: 10;">
                     <div class="row" style="z-index: 10;">
                         <div class="col">
                             <div class="d-flex w-100 justify-content-between">
@@ -105,16 +119,52 @@ function mostrarDatos(data, data2) {
                         </div>`
                     }
             }
-            
-        }      
+        }   
+  }
+
+function  mostrarDatosRelacionado(data3){
+    const [img1] = data3.images; 
+    container3.innerHTML += `
+    <h1 class="mb-1" style="margin-top:3%;">Productos relacionados</h1>
+    <div><h1>${data3.id}</h1></div>
+    
+    <div onclick="setProID2(${data3.id})" class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card cursor-active">
+            <img src="${img1}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${data3.name}</h5>
+            </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+            </*img src="..."*/ class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+            </div>
+            </div>
+        </div>
+        </div>
+    `;
+
   }
 
 async function loadData(){
     let response = await fetch(LINK_INFO_PRODUCTOS);
     let response2 = await fetch(LINK_COM_PRO);
+    let response3 = await fetch(LINK_INFO_PRODUCTOS1);
     let json = await response.json();
     let json2 = await response2.json();
-    mostrarDatos(json,json2);
+    
+    if (response3.ok) {
+        let json3 = await response3.json();
+        mostrarDatos(json,json2);
+        mostrarDatosRelacionado(json3);
+      }else{
+        console.log(response3.status);
+        mostrarDatos(json,json2);
+      }
 }
 
 loadData();
