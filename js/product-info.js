@@ -122,14 +122,15 @@ function mostrarDatos(data,data2) {
         }   
   }
 
-function  mostrarDatosRelacionado(data3){
+function  mostrarDatosRelacionado(data3,data4){
     const [img1] = data3.images; 
+    const [imge2] = data4.images; 
     container3.innerHTML += `
     <h1 class="mb-1" style="margin-top:3%;">Productos relacionados</h1>
-    <div><h1>${data3.id}</h1></div>
+
     
-    <div onclick="setProID2(${data3.id})" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" onclick="setProID2(${data3.id})" >
             <div class="card cursor-active">
             <img src="${img1}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -137,11 +138,11 @@ function  mostrarDatosRelacionado(data3){
             </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card">
-            </*img src="..."*/ class="card-img-top" alt="...">
+        <div class="col" onclick="setProID2(${data4.id})">
+            <div class="card cursor-active">
+            <img src="${imge2}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">${data4.name}</h5>
             </div>
             </div>
         </div>
@@ -150,21 +151,87 @@ function  mostrarDatosRelacionado(data3){
 
   }
 
+
 async function loadData(){
-    let response = await fetch(LINK_INFO_PRODUCTOS);
-    let response2 = await fetch(LINK_COM_PRO);
-    let response3 = await fetch(LINK_INFO_PRODUCTOS1);
-    let json = await response.json();
-    let json2 = await response2.json();
     
-    if (response3.ok) {
+    
+    /*if (response3.status === "ok") {
         let json3 = await response3.json();
         mostrarDatos(json,json2);
         mostrarDatosRelacionado(json3);
       }else{
-        console.log(response3.status);
+        
+        let json3 = await response3.json();
         mostrarDatos(json,json2);
-      }
+        mostrarDatosRelacionado(json3);
+      }*/
 }
 
 loadData();
+
+async function verificarURL(){
+   
+    let response = await fetch(LINK_INFO_PRODUCTOS);
+    let response2 = await fetch(LINK_COM_PRO);
+    let json = await response.json();
+    let json2 = await response2.json();
+    let respo = await fetch(LINK_PRODUCTOS);
+    let jsonp = await respo.json();
+    const [id] = jsonp.products;
+    /*const [id2] = json.products;*/
+    console.log(id.id);
+    var mostrar1 = parseFloat(IDP) + 1;
+    var mostrar2 = parseFloat(IDP) + 2;
+    console.log(mostrar1);
+    const last = jsonp.products[jsonp.products.length-1];
+    const last2 = jsonp.products[jsonp.products.length-2];
+    console.log(last.id);
+
+    if(json.id == last2.id){
+        var LINK_INFO_PRODUCTOS1 = PRODUCT_INFO_URL + mostrar1 + EXT_TYPE;
+        let response3 = await fetch(LINK_INFO_PRODUCTOS1);
+        let json3 = await response3.json();
+        var mostrar2 = parseFloat(IDP) - 1;
+        var LINK_INFO_PRODUCTOS2 = PRODUCT_INFO_URL + mostrar2 + EXT_TYPE;
+        let response4 = await fetch(LINK_INFO_PRODUCTOS2);
+        let json4 = await response4.json();
+        mostrarDatos(json,json2);
+        mostrarDatosRelacionado(json3,json4);
+        console.log(LINK_INFO_PRODUCTOS2);
+    }
+    
+        if(mostrar1 > last.id){
+            var mostrar1 = parseFloat(IDP) - 1;
+            var LINK_INFO_PRODUCTOS1 = PRODUCT_INFO_URL + mostrar1 + EXT_TYPE;
+            let response3 = await fetch(LINK_INFO_PRODUCTOS1);
+            let json3 = await response3.json();
+            var mostrar2 = parseFloat(IDP) - 4;
+            var LINK_INFO_PRODUCTOS2 = PRODUCT_INFO_URL + mostrar2 + EXT_TYPE;
+            let response4 = await fetch(LINK_INFO_PRODUCTOS2);
+            let json4 = await response4.json();
+            mostrarDatos(json,json2);
+            mostrarDatosRelacionado(json3,json4);
+        }else if(mostrar1 > id.id){
+            var LINK_INFO_PRODUCTOS1 = PRODUCT_INFO_URL + mostrar1 + EXT_TYPE;
+            let response3 = await fetch(LINK_INFO_PRODUCTOS1);
+            let json3 = await response3.json();
+            var mostrar2 = parseFloat(IDP) + 2;
+            var LINK_INFO_PRODUCTOS2 = PRODUCT_INFO_URL + mostrar2 + EXT_TYPE;
+            let response4 = await fetch(LINK_INFO_PRODUCTOS2);
+            let json4 = await response4.json();
+            mostrarDatos(json,json2);
+            mostrarDatosRelacionado(json3,json4);
+            console.log(LINK_INFO_PRODUCTOS2);
+
+        }
+
+    /*for(a = 0; a < jsonp.products.length; a++){
+        var mostrar1 = parseFloat(IDP) + 1;
+        var LINK_INFO_PRODUCTOS1 = PRODUCT_INFO_URL + mostrar1 + EXT_TYPE;
+        let response3 = await fetch(LINK_INFO_PRODUCTOS1);
+        let json3 = await response3.json();
+        mostrarDatos(json,json2);
+        mostrarDatosRelacionado(json3);
+    }*/
+  }
+  verificarURL();

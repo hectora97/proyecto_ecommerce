@@ -9,12 +9,9 @@ const EXT_TYPE = ".json";
 const PRODUCTS_AUTOS ="https://japceibal.github.io/emercado-api/cats_products/101.json";
 const ID = localStorage.getItem("catID");
 var LINK_PRODUCTOS ="https://japceibal.github.io/emercado-api/cats_products/"+ ID +""+ EXT_TYPE;
-const IDP = localStorage.getItem("proID");
+var IDP = localStorage.getItem("proID");
 var LINK_INFO_PRODUCTOS = PRODUCT_INFO_URL + IDP + EXT_TYPE;
 var LINK_COM_PRO = PRODUCT_INFO_COMMENTS_URL + IDP + EXT_TYPE;
-const mostrar1 = parseFloat(IDP) + 1;
-var LINK_INFO_PRODUCTOS1 = PRODUCT_INFO_URL + mostrar1 + EXT_TYPE;
-
 
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
