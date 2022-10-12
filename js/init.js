@@ -12,6 +12,7 @@ var LINK_PRODUCTOS ="https://japceibal.github.io/emercado-api/cats_products/"+ I
 var IDP = localStorage.getItem("proID");
 var LINK_INFO_PRODUCTOS = PRODUCT_INFO_URL + IDP + EXT_TYPE;
 var LINK_COM_PRO = PRODUCT_INFO_COMMENTS_URL + IDP + EXT_TYPE;
+var carrito1 = CART_INFO_URL + "25801" + EXT_TYPE;
 
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
