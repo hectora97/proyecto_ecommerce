@@ -5,7 +5,7 @@ const prem = document.getElementById("prem");
 const expres = document.getElementById("expres");
 const stand = document.getElementById("stand");
 const btn_final = document.getElementById("btn-final");
-var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 
 const habilitar = () => {
     const checkTarj = document.getElementById("tarj");
@@ -54,6 +54,7 @@ function validate() {
             alert('Falto llenar algun campo.', 'danger');
             
             }else{
+                event.preventDefault() // Evita la recarga de la pagina
                 alert('¡Has comprado con éxito!.', 'success');
             }
             form.classList.add('was-validated')
@@ -66,7 +67,7 @@ validate();
 
     function alert(message, type) {
         var wrapper = document.createElement('div')
-        wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+        wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
       
         alertPlaceholder.append(wrapper)
       }
