@@ -67,6 +67,7 @@
     
     <div class="container">
       <hr>
+      <form class="row g-3 needs-validation" novalidate> 
       <p class="lead fw-bold"> <b> Tipo de envio </b></p>
       
       <div class="form-check mb-3" id="prem">
@@ -82,15 +83,15 @@
       <div class="form-check mb-3" id="stand">
 
       </div>
-
+      </form>
       <br>
 
       <form class="row g-3 needs-validation" novalidate>
         <p class="lead fw-bold"> <b> Dirección de envio </b> </p>
 
-        <div class="form-group" style="float: right; width: 40%;" for="validationCustom01">
+        <div class="form-group" style="float: right; width: 40%;">
           <label for="">Número</label>
-          <input type="text" class="form-control" id="numD"  placeholder="Numero" required>
+          <input type="number" class="form-control" id="numD"  placeholder="Numero" required>
           <div class="invalid-feedback">
             Inrgesar número.
           </div>
@@ -148,17 +149,18 @@
     </div>
     <br>
 
-    <div class="container contFormPago">
+    <div class="container">
       <hr>
       <p class="lead fw-bold"> <b> Forma de pago </b> </p>
-      No ha seleccionado <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Seleccionar</a>
+      <p id="mostr">No ha seleccionado <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Seleccionar</a></p>
+
+      
 
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Forma de pago</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="tarjCred">
@@ -171,61 +173,71 @@
               </div>
               <hr> 
 
-                <div class="inputsTarjeCred">
-
                   <div class="form-group" style="width: 30%;float:right; margin-right: 15%;">
                     <label for="">Codigo de seg.</label>
-                    <input type="text" class="form-control" id="segT">
+                    <input type="number" class="form-control" id="segT" required>
+                    <div class="invalid-feedback">
+                      Inrgesar número.
+                    </div>
                   </div>
 
-                  <div class="form-group" style="width:50%;">
+                  <div class="form-group" style="width:50%;" for="">
                     <label for="">Número de tarjeta</label>
-                    <input type="text" class="form-control" id="numT">
+                    <input type="number" class="form-control" id="numT" required>
+                    <div class="invalid-feedback">
+                      Inrgesar número.
+                    </div>
                   </div>
       
                   <br>
-                  <div class="form-group" style="width:50%;">
+                  <div class="form-group" style="width:50%;" for="">
                     <label for="">Vencimiento (MM/AA)</label>
-                    <input type="text" class="form-control" id="vencT">
+                    <input type="date" class="form-control" id="vencT" required>
+                    <div class="invalid-feedback">
+                      Inrgesar número.
+                    </div>
                   </div>
                   <br>
-                  
-                </div>
+        
 
-                <div class="transBanc">
-                  <div class="form-check">
+                <div class="form-check">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="transf" onclick="habilitar();">
                     <label class="form-check-label" for="flexRadioDefault2">
                       Transferencia bancaria
                     </label>
                   </div>
                   <hr>
-                  <div class="form-group" style="width: 50%;">
+                  <div class="form-group" style="width: 50%;" for="validationCustom01">
                     <label for="">Numero de cuenta</label>
-                    <input type="text" class="form-control" id="numB">
+                    <input type="number" class="form-control" id="numB" required>
+                    <div class="invalid-feedback">
+                      Inrgesar número.
+                    </div>
                   </div>
 
+        
                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>     
                 
-
-            </div>
-
-            <div class="modal-footer">
-              <button class="btn btn-primary" type="submit">Cerrar</button>
-            </div>
+                
+        
           </div>
         </div>
       </div>
-
+    
 
     </div>
     <br>
     <div class="container">
+      <div id="liveAlertPlaceholder"></div>
       <button class="btn btn-primary" type="submit" id="btn-final" style="width:100%" disabled>Finalizar Compra</button>
     </div>
     </form>
- 
-
+    
+  
+    
   </main>
 
   <footer class="text-muted">

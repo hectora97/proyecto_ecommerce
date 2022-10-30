@@ -5,6 +5,7 @@ const prem = document.getElementById("prem");
 const expres = document.getElementById("expres");
 const stand = document.getElementById("stand");
 const btn_final = document.getElementById("btn-final");
+var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 
 const habilitar = () => {
     const checkTarj = document.getElementById("tarj");
@@ -17,6 +18,10 @@ const habilitar = () => {
     
     if(checkTarj.checked){
         segtar.disabled = true;
+        const mostr = document.getElementById("mostr");
+        mostr.innerHTML=`
+        Tarjeta de Credito. <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Seleccionar</a>
+        `
     }else{
         segtar.disabled = false;
     }
@@ -25,6 +30,9 @@ const habilitar = () => {
         segT.disabled = true;
         numT.disabled = true;
         vencT.disabled = true;
+        mostr.innerHTML=`
+        Transferencia bancaria. <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Seleccionar</a>
+        `
     }else{
         segT.disabled = false;
         numT.disabled = false;
@@ -33,25 +41,36 @@ const habilitar = () => {
     
 }
 
-    (function () {
-        'use strict'
+function validate() { 
     
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
-    
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
+    let forms= document.querySelectorAll('.needs-validation')
+
+    Array.prototype.slice.call(forms)
         .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
+        form.addEventListener('submit', function (event) {
             if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
+            event.preventDefault()
+            event.stopPropagation()
+            alert('Falto llenar algun campo.', 'danger');
+            
+            }else{
+                alert('¡Has comprado con éxito!.', 'success');
             }
-    
             form.classList.add('was-validated')
-            }, false)
-        })
-    })()
+            
+        }, false)
+});
+} 
+
+validate();
+
+    function alert(message, type) {
+        var wrapper = document.createElement('div')
+        wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+      
+        alertPlaceholder.append(wrapper)
+      }
+    
 
 
     function cargarHTML(){
@@ -65,7 +84,7 @@ const habilitar = () => {
         const cost = document.getElementById("costo");
         const result = costoU * cantT.value;
         console.log(result);
-        total.innerHTML =`<p id="costo1" value=${result} oninput="todoCost(${result})"> USD${result} </p>`;
+        total.innerHTML =`<p id="costo1" value=${result} oninput="todoCost(${result})"> USD ${result} </p>`;
         cost.innerHTML =`
             USD ${result}
             `
@@ -96,10 +115,10 @@ const habilitar = () => {
         const final = result * (costEnv / 100);
         const costF = final + result;
         costE.innerHTML = `
-            <p id="" value=${final}> USD${final.toFixed(2)} </p>
+            <p id="" value=${final}> USD ${final.toFixed(2)} </p>
         `
         costT.innerHTML = `
-            <p id="" value=${costF}> USD${costF.toFixed(2)} </p>
+            <p id="" value=${costF}> USD ${costF.toFixed(2)} </p>
         `
         
     };
@@ -116,6 +135,7 @@ const habilitar = () => {
             <td id="total"></td>
             ` 
             prem.innerHTML=`
+            
             <input class="form-check-input" value="15" type="radio" name="flexRadioDefault" id="premI" onclick="todoCost(${item1.unitCost})" required>
             <label class="form-check-label" for="flexRadioDefault2">
                 Premium 2 a 5 dias (15%).
