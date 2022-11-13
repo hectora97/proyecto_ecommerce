@@ -6,6 +6,7 @@ const apell = document.getElementById("apell");
 const apell2 = document.getElementById("apell2");
 const mail = document.getElementById("mail");
 const tel = document.getElementById("tel");
+var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 
 console.log(dataStorage);
 
@@ -43,12 +44,12 @@ console.log(dataStorage);
                 if (!form.checkValidity()) {
                 event.preventDefault()
                 event.stopPropagation()
+                alert('Falto llenar campo obligatorio.', 'danger');
                 
                 }else{
                     event.preventDefault() // Evita la recarga de la pagina
-                    localStorage.setItem("nombre1", nom.value);
-                    localStorage.setItem("nombre2", nom2.value);
-                    localStorage.setItem("apellido1", apell.value);
+                    guardarUser();
+                    alert('Cambios guardados!', 'success');
                 }
                 form.classList.add('was-validated')
                 
@@ -57,6 +58,13 @@ console.log(dataStorage);
     } 
     
     validate();
+
+    function alert(message, type) {
+        var wrapper = document.createElement('div')
+        wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+      
+        alertPlaceholder.append(wrapper)
+      }
 
     function guardarUser(){
         var datos = {};
