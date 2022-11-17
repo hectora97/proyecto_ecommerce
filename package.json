@@ -1,0 +1,22 @@
+{
+  "name": "proyecto_ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "(app.js)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hectora97/proyecto_ecommerce.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hectora97/proyecto_ecommerce/issues"
+  },
+  "homepage": "https://github.com/hectora97/proyecto_ecommerce#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
